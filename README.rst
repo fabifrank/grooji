@@ -1,6 +1,7 @@
 ====
 Grooji - Groovy Jenkins Libraries
 ====
+[ˈɡruːtʃi]
 
 Reusable Jenkins Shared Libraries written in groovy to extend and abstract some functionalities related to Build Pipelines.
 
