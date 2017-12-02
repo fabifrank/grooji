@@ -20,7 +20,7 @@ To run the tests and clean paths afterwards::
 
 To run the tests and leave results in `build` directory::
 
-  npm run test_report
+  npm run test
 
 To open the test reports in browser::
 

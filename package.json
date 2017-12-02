@@ -4,8 +4,8 @@
   "description": "==== Syna Jenkins Libraries ====",
   "main": "index.js",
   "scripts": {
+    "test": "gradle test -i",
     "test_clean": "gradle test -i clean",
-    "test_report": "gradle test",
     "reports": "open build/reports/tests/test/index.html"
   },
   "repository": {
