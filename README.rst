@@ -14,14 +14,16 @@ Requirements
 Development
 ----
 
-To run the tests and clean paths afterwards::
-
-  npm run test_clean
-
 To run the tests and leave results in `build` directory::
 
   npm run test
 
+To clean the directories::
+
+  npm run clean
+
 To open the test reports in browser::
 
   npm run reports
+
+In general: take a look at the package.json ;-)
