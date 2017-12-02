@@ -18,6 +18,9 @@ class SlackNotificationSpec extends Specification {
       com.grooji.SlackNotification.DEPLOY_ERROR == 'Deploy ERROR';
       com.grooji.SlackNotification.TEST_SUCCESS == 'Test SUCCESS';
       com.grooji.SlackNotification.TEST_ERROR == 'Test ERROR';
+      com.grooji.SlackNotification.COLOR_SUCCESS == 'good';
+      com.grooji.SlackNotification.COLOR_INFO == 'neutral';
+      com.grooji.SlackNotification.COLOR_ERROR == 'danger';
   }
 
   def 'Build slack messages'() {

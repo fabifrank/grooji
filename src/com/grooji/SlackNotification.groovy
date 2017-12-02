@@ -13,6 +13,13 @@ class SlackNotification {
   public static String TEST_SUCCESS = 'Test SUCCESS';
   public static String TEST_ERROR = 'Test ERROR';
 
+  public static String COLOR_SUCCESS = 'good'; // more easy to remember and lookup with auto completion
+  public static String COLOR_INFO = 'neutral';
+  public static String COLOR_ERROR = 'danger';
+
+  /**
+   * Build a slack notification based on parameters
+   */
   public static buildMessage(String action, String appName, String targetEnv, String build, String log, String recentStage) {
     String msg = appName;
     if (targetEnv.length() > 0) {
@@ -31,35 +38,10 @@ class SlackNotification {
     return '[' + action + '] ' + msg + log
   }
 
-  public static notifyBuildStart(appName, targetEnv) {
-    slackSend(color: 'neutral', message: buildMessage('Build Start', appName, targetEnv, '', '', ''))
-  }
-
-  public static notifyBuildSuccess(appName, targetEnv, build) {
-    slackSend(color: 'good', message: buildMessage('Build SUCCESS', appName, targetEnv, build, '', ''))
-  }
-
-  public static notifyBuildError(appName, targetEnv, build, log, recentStage) {
-    slackSend(color: 'danger', message: buildMessage('Build ERROR', appName, targetEnv, build, log, recentStage))
-  }
-
-  public static notifyApplySuccess(appName, targetEnv, build, log) {
-    slackSend(color: 'good', message: buildMessage('Apply SUCCESS', appName, targetEnv, build, log, ''))
-  }
-
-  public static notifyDeployStatus(appName, targetEnv, build, status) {
-    slackSend(color: 'neutral', message: buildMessage('Deploy Status', appName, targetEnv, build, status, ''))
-  }
-
-  public static notifyDeploySuccess(appName, targetEnv, build, log) {
-    slackSend(color: 'good', message: buildMessage('Deploy SUCCESS', appName, targetEnv, build, log, ''))
-  }
-
-  public static notifyTestError(appName, targetEnv, build, log) {
-    slackSend(color: 'danger', message: buildMessage('Test ERROR', appName, targetEnv, build, log, ''))
-  }
-
-  public static notifyTestSuccess(appName, targetEnv, build, log) {
-    slackSend(color: 'good', message: buildMessage('Test SUCCESS', appName, targetEnv, build, log, ''))
+  /**
+   * Send a message to slack
+   */
+  public static send(String color, String action, String appName, String targetEnv, String build, String log, String recentStage) {
+    slackSend(color: color, message: buildMessage(action, appName, targetEnv, build, log, recentStage));
   }
 }
