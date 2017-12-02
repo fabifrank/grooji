@@ -1,0 +1,8 @@
+import com.grooji.*;
+
+def execute() {
+  node() {
+    def slack = new com.grooji.SlackNotification(this);
+    slack.send('color', 'action', 'appName', 'targetEnv', 'build', 'log', 'recentStage');
+  }
+}

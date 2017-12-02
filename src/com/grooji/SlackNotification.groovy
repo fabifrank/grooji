@@ -17,6 +17,12 @@ class SlackNotification {
   public static String COLOR_INFO = 'neutral';
   public static String COLOR_ERROR = 'danger';
 
+  private jenkins;
+
+  SlackNotification(jenkins) {
+    this.jenkins = jenkins;
+  }
+
   /**
    * Build a slack notification based on parameters
    */
@@ -41,7 +47,7 @@ class SlackNotification {
   /**
    * Send a message to slack
    */
-  public static send(String color, String action, String appName, String targetEnv, String build, String log, String recentStage) {
-    slackSend(color: color, message: buildMessage(action, appName, targetEnv, build, log, recentStage));
+  public send(String color, String action, String appName, String targetEnv, String build, String log, String recentStage) {
+    jenkins.slackSend(color: color, message: buildMessage(action, appName, targetEnv, build, log, recentStage));
   }
 }

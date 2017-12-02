@@ -1,8 +1,7 @@
-package com.grooji;
-
-import com.grooji.Time;
+import com.grooji.SlackNotification;
 import groovy.time.*;
 import spock.lang.*;
+import groovy.mock.*;
 
 class SlackNotificationSpec extends Specification {
   def 'Constants have correct values'() {
@@ -39,5 +38,3 @@ class SlackNotificationSpec extends Specification {
       message == '[Push artifact to server] Some Cool App\nEnv: integration\nBuild: #23\nStage: Deploy Step\nDeployment successful...';
   }
 }
-
-
