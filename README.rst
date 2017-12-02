@@ -8,7 +8,6 @@ Reusable Jenkins Shared Libraries written in groovy to extend and abstract some 
 Requirements
 ----
 
-- NodeJS
 - Gradle
 
 
@@ -17,14 +16,12 @@ Development
 
 To run the tests and leave results in `build` directory::
 
-  npm run test
+  gradle test -i
 
 To clean the directories::
 
-  npm run clean
+  gradle test -i clean
 
-To open the test reports in browser::
+To view the test reports in browser::
 
-  npm run reports
-
-In general: take a look at the package.json ;-)
+  open build/reports/tests/test/index.html

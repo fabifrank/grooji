@@ -1,7 +1,7 @@
 {
-  "name": "groovy-jenkins-libraries",
+  "name": "grooji",
   "version": "0.0.1",
-  "description": "==== Syna Jenkins Libraries ====",
+  "description": "Reusable Jenkins Shared Libraries written in groovy to extend and abstract some functionalities related to Build Pipelines.",
   "main": "index.js",
   "scripts": {
     "test": "gradle test -i",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@syna-jenkins-libraries.github.com:fabifrank/syna-jenkins-libraries.git"
+    "url": "git@github.com:fabifrank/grooji.git"
   },
   "author": "",
   "license": "ISC"
