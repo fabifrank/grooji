@@ -1,17 +1,17 @@
 package com.grooji;
 
 class SlackNotification {
-  public static String BUILD_START = 'Build Start';
-  public static String BUILD_SUCCESS = 'Build SUCCESS';
-  public static String BUILD_ERROR = 'Build ERROR';
-  public static String APPLY_START = 'Apply Start'; // e.g. Kubernets Apply
-  public static String APPLY_SUCCESS = 'Apply SUCCESS';
-  public static String APPLY_ERROR = 'Apply ERROR';
-  public static String DEPLOY_STATUS = 'Deploy Status';
-  public static String DEPLOY_SUCCESS = 'Deploy SUCCESS';
-  public static String DEPLOY_ERROR = 'Deploy ERROR';
-  public static String TEST_SUCCESS = 'Test SUCCESS';
-  public static String TEST_ERROR = 'Test ERROR';
+  public static final String BUILD_START = 'Build Start';
+  public static final String BUILD_SUCCESS = 'Build SUCCESS';
+  public static final String BUILD_ERROR = 'Build ERROR';
+  public static final String APPLY_START = 'Apply Start'; // e.g. Kubernets Apply
+  public static final String APPLY_SUCCESS = 'Apply SUCCESS';
+  public static final String APPLY_ERROR = 'Apply ERROR';
+  public static final String DEPLOY_STATUS = 'Deploy Status';
+  public static final String DEPLOY_SUCCESS = 'Deploy SUCCESS';
+  public static final String DEPLOY_ERROR = 'Deploy ERROR';
+  public static final String TEST_SUCCESS = 'Test SUCCESS';
+  public static final String TEST_ERROR = 'Test ERROR';
 
   public static String COLOR_SUCCESS = 'good'; // more easy to remember and lookup with auto completion
   public static String COLOR_INFO = 'neutral';
