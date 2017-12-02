@@ -5,17 +5,15 @@ import groovy.time.*;
 import spock.lang.*;
 
 class SecuritySpec extends Specification {
-  def "Getting minutes as a string to duration works"() {
+  def "Remove credentials from connection string"() {
     given:
-      def start = Date.parse("yyy-MM-dd'T'HH:mm:ss.SSSZ","2017-12-02T22:15:00.000+01:00".replace("+01:00","+0100"));
-      def end = Date.parse("yyy-MM-dd'T'HH:mm:ss.SSSZ","2017-12-02T22:20:30.000+01:00".replace("+01:00","+0100"));
-      TimeDuration duration = TimeCategory.minus(end, start);
+      def connection = 'https://hello:world@awesome-host/some-path';
 
     when:
-      def minutes = com.grooji.Time.getMinutesStringForDuration(duration);
+      def result = com.grooji.Security.clearConnectionString(connection);
 
     then:
-      minutes == "5.5";
+      result == 'https://xxx@awesome-host/some-path';
   }
 }
 
