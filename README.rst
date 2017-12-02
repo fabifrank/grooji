@@ -1,5 +1,5 @@
 ====
-Syna Jenkins Libraries
+Grooji Jenkins Libraries
 ====
 
 Reusable Jenkins Shared Libraries written in groovy to extend and abstract some functionalities related to Build Pipelines.
