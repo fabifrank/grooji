@@ -3,7 +3,7 @@ import org.junit.Test;
 import org.junit.Assert;
 import com.lesfurets.jenkins.unit.BasePipelineTest;
 
-class SlackNotificationSpec extends BasePipelineTest {
+class SlackNotificationIntegrationSpec extends BasePipelineTest {
 
     @Override
     @Before

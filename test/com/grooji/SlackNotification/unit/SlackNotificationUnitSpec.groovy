@@ -3,7 +3,7 @@ import groovy.time.*;
 import spock.lang.*;
 import groovy.mock.*;
 
-class SlackNotificationSpec extends Specification {
+class SlackNotificationUnitSpec extends Specification {
   def 'Constants have correct values'() {
     expect:
       com.grooji.SlackNotification.BUILD_START == 'Build Start';
