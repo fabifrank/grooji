@@ -11,10 +11,17 @@ Requirements
 - Gradle
 
 
-Installation for Development
+Development
 ----
 
-To run the tests::
+To run the tests and clean paths afterwards::
 
-  npm run test
+  npm run test_clean
 
+To run the tests and leave results in `build` directory::
+
+  npm run test_report
+
+To open the test reports in browser::
+
+  npm run reports
