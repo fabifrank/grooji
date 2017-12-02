@@ -6,7 +6,8 @@
   "scripts": {
     "test": "gradle test -i",
     "clean": "gradle test -i clean",
-    "reports": "open build/reports/tests/test/index.html"
+    "coverage": "gradle test jacocoTestReport",
+    "show_html_report": "open build/reports/tests/test/index.html"
   },
   "repository": {
     "type": "git",
