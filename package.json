@@ -1,0 +1,15 @@
+{
+  "name": "groovy-jenkins-libraries",
+  "version": "0.0.1",
+  "description": "==== Syna Jenkins Libraries ====",
+  "main": "index.js",
+  "scripts": {
+    "test": "gradle test -i clean"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@syna-jenkins-libraries.github.com:fabifrank/syna-jenkins-libraries.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
