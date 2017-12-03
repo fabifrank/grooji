@@ -27,7 +27,7 @@ class SlackNotification {
    * Build a slack notification based on parameters
    */
   public static buildMessage(String action, String appName, String targetEnv, String build, String log, String recentStage) {
-    String msg = appName;
+    String msg = '[' + action + '] ' + appName;
     if (targetEnv.length() > 0) {
       msg += '\nEnv: ' + targetEnv
     }
@@ -38,16 +38,16 @@ class SlackNotification {
       msg += '\nStage: ' + recentStage
     }
     if (log.length() > 0) {
-      log = '\n' + log
+      msg += '\n' + log
     }
-
-    return '[' + action + '] ' + msg + log
+    return msg
   }
 
   /**
    * Send a message to slack
    */
-  public send(String color, String action, String appName, String targetEnv, String build, String log, String recentStage) {
-    jenkins.slackSend(color: color, message: buildMessage(action, appName, targetEnv, build, log, recentStage));
+  public send(String color, String action, String appName, String targetEnv = '', String build = '', String log = '', String recentStage = '') {
+    final message = buildMessage(action, appName, targetEnv, build, log, recentStage);
+    jenkins.slackSend(color: color, message: message);
   }
 }

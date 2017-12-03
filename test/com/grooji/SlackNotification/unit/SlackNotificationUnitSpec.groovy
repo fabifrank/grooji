@@ -37,4 +37,5 @@ class SlackNotificationUnitSpec extends Specification {
     then:
       message == '[Push artifact to server] Some Cool App\nEnv: integration\nBuild: #23\nStage: Deploy Step\nDeployment successful...';
   }
+
 }

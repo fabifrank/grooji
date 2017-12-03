@@ -4,5 +4,9 @@ def execute() {
   node() {
     def slack = new com.grooji.SlackNotification(this);
     slack.send('color', 'action', 'appName', 'targetEnv', 'build', 'log', 'recentStage');
+    slack.send('color', 'action', 'appName', 'targetEnv', 'build', 'log');
+    slack.send('color', 'action', 'appName', 'targetEnv', 'build');
+    slack.send('color', 'action', 'appName', 'targetEnv');
+    slack.send('color', 'action', 'appName');
   }
 }

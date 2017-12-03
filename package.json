@@ -7,7 +7,8 @@
     "test": "gradle test -i",
     "clean": "gradle test -i clean",
     "coverage": "gradle test jacocoTestReport",
-    "show_html_report": "open build/reports/tests/test/index.html"
+    "html_test_report": "open build/reports/tests/test/index.html",
+    "html_coverage_report": "open build/reports/jacoco/index.html"
   },
   "repository": {
     "type": "git",

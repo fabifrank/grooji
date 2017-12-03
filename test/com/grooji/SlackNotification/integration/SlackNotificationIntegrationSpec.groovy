@@ -19,13 +19,22 @@ class SlackNotificationIntegrationSpec extends BasePipelineTest {
 	script.execute()
 	//printCallStack()
 
-	def fnCall;
-	helper.callStack.findAll { call ->
+	def fnCalls = [];
+	helper.callStack.findAll{ call ->
 	    call.methodName == "slackSend"
-	}.any { call ->
-	    fnCall = call.toString();
+	}.every{ call ->
+	    fnCalls.push(call.toString());
 	}
-	org.junit.Assert.assertEquals('Jenkinsfile.slackSend({color=color, message=[action] appName\nEnv: targetEnv\nBuild: build\nStage: recentStage\nlog})', fnCall.trim());
+	org.junit.Assert.assertEquals('Jenkinsfile.slackSend({color=color, message=[action] appName\nEnv: targetEnv\nBuild: build\nStage: recentStage\nlog})', fnCalls[0].trim());
+
+	org.junit.Assert.assertEquals('Jenkinsfile.slackSend({color=color, message=[action] appName\nEnv: targetEnv\nBuild: build\nlog})', fnCalls[1].trim());
+
+	org.junit.Assert.assertEquals('Jenkinsfile.slackSend({color=color, message=[action] appName\nEnv: targetEnv\nBuild: build})', fnCalls[2].trim());
+
+	org.junit.Assert.assertEquals('Jenkinsfile.slackSend({color=color, message=[action] appName\nEnv: targetEnv})', fnCalls[3].trim());
+
+	org.junit.Assert.assertEquals('Jenkinsfile.slackSend({color=color, message=[action] appName})', fnCalls[4].trim());
+
 	assertJobStatusSuccess();
     }
 }
