@@ -9,7 +9,6 @@ class SlackNotificationIntegrationSpec extends BasePipelineTest {
     @Before
     public void setUp() throws Exception {
 	super.setUp();
-	helper.registerAllowedMethod("test", [], { "ok" });
 	helper.registerAllowedMethod("slackSend", [Map.class], { "ok" });
     }
 
@@ -34,6 +33,8 @@ class SlackNotificationIntegrationSpec extends BasePipelineTest {
 	org.junit.Assert.assertEquals('Jenkinsfile.slackSend({color=color, message=[action] appName\nEnv: targetEnv})', fnCalls[3].trim());
 
 	org.junit.Assert.assertEquals('Jenkinsfile.slackSend({color=color, message=[action] appName})', fnCalls[4].trim());
+
+        org.junit.Assert.assertEquals('Jenkinsfile.slackSend({color=neutral, message=[Build Start] appName})', fnCalls[5].trim());
 
 	assertJobStatusSuccess();
     }
