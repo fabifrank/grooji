@@ -1,13 +1,17 @@
+@Library('grooji')
 import com.grooji.*;
 
 def execute() {
   node() {
-    def slack = com.grooji.SlackNotification;
-    slack.send(this.slackSend, 'color', 'action', 'appName', 'targetEnv', 'build', 'log', 'recentStage');
-    slack.send(slackSend, 'color', 'action', 'appName', 'targetEnv', 'build', 'log');
-    slack.send(slackSend, 'color', 'action', 'appName', 'targetEnv', 'build');
-    slack.send(slackSend, 'color', 'action', 'appName', 'targetEnv');
-    slack.send(slackSend, 'color', 'action', 'appName');
-    slack.send(slackSend, slack.COLOR_INFO, slack.BUILD_START, 'appName');
+
+    stage("Send some slack messages") {
+      def slack = new com.grooji.SlackNotification(this);
+      slack.send('color', 'action', 'appName', 'targetEnv', 'build', 'log', 'recentStage');
+      slack.send(slackSend, 'color', 'action', 'appName', 'targetEnv', 'build', 'log');
+      slack.send(slackSend, 'color', 'action', 'appName', 'targetEnv', 'build');
+      slack.send(slackSend, 'color', 'action', 'appName', 'targetEnv');
+      slack.send(slackSend, 'color', 'action', 'appName');
+      slack.send(slackSend, slack.COLOR_INFO, slack.BUILD_START, 'appName');
+    }
   }
 }
