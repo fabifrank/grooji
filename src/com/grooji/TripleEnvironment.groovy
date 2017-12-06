@@ -8,10 +8,8 @@ class TripleEnvironment {
     switch (branchName) {
       case "staging":
         return "staging";
-        break;
       case "production":
         return "production";
-        break;
     }
     return 'integration';
   }
