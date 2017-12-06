@@ -8,7 +8,7 @@ import static com.lesfurets.jenkins.unit.global.lib.LibraryConfiguration.library
 import static com.lesfurets.jenkins.unit.global.lib.LocalSource.localSource;
 
 
-class SlackNotificationIntegrationSpec extends BasePipelineTest {
+class SlackNotificationJenkinsfileSpec extends BasePipelineTest {
 
     @Override
     @Before
@@ -41,7 +41,7 @@ class SlackNotificationIntegrationSpec extends BasePipelineTest {
 
     @Test
     public void should_execute_without_errors() throws Exception {
-	def script = loadScript('test/com/grooji/SlackNotification/integration/Jenkinsfile')
+	def script = loadScript('test/com/grooji/SlackNotification/unit/Jenkinsfile')
 	script.execute()
 
 	def fnCalls = [];
