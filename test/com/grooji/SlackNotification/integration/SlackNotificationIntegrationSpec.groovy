@@ -50,17 +50,17 @@ class SlackNotificationIntegrationSpec extends BasePipelineTest {
 	}.every{ call ->
 	    fnCalls.push(call.toString());
 	}
-	org.junit.Assert.assertEquals('Jenkinsfile.slackSend({color=color, message=[action] appName\nEnv: targetEnv\nBuild: build\nStage: recentStage\nlog})', fnCalls[0].trim());
+	org.junit.Assert.assertEquals('pushSlackNotification.slackSend({color=color, message=[action] appName\nEnv: targetEnv\nBuild: build\nStage: recentStage\nlog})', fnCalls[0].trim());
 
-	org.junit.Assert.assertEquals('Jenkinsfile.slackSend({color=color, message=[action] appName\nEnv: targetEnv\nBuild: build\nlog})', fnCalls[1].trim());
+	org.junit.Assert.assertEquals('pushSlackNotification.slackSend({color=color, message=[action] appName\nEnv: targetEnv\nBuild: build\nlog})', fnCalls[1].trim());
 
-	org.junit.Assert.assertEquals('Jenkinsfile.slackSend({color=color, message=[action] appName\nEnv: targetEnv\nBuild: build})', fnCalls[2].trim());
+	org.junit.Assert.assertEquals('pushSlackNotification.slackSend({color=color, message=[action] appName\nEnv: targetEnv\nBuild: build})', fnCalls[2].trim());
 
-	org.junit.Assert.assertEquals('Jenkinsfile.slackSend({color=color, message=[action] appName\nEnv: targetEnv})', fnCalls[3].trim());
+	org.junit.Assert.assertEquals('pushSlackNotification.slackSend({color=color, message=[action] appName\nEnv: targetEnv})', fnCalls[3].trim());
 
-	org.junit.Assert.assertEquals('Jenkinsfile.slackSend({color=color, message=[action] appName})', fnCalls[4].trim());
+	org.junit.Assert.assertEquals('pushSlackNotification.slackSend({color=color, message=[action] appName})', fnCalls[4].trim());
 
-        org.junit.Assert.assertEquals('Jenkinsfile.slackSend({color=neutral, message=[Build Start] appName})', fnCalls[5].trim());
+        org.junit.Assert.assertEquals('pushSlackNotification.slackSend({color=neutral, message=[Build Start] appName})', fnCalls[5].trim());
 
 	assertJobStatusSuccess();
     }

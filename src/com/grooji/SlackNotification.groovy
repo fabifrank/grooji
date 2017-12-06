@@ -17,13 +17,6 @@ class SlackNotification {
   public static String COLOR_INFO = 'neutral';
   public static String COLOR_ERROR = 'danger';
 
-  private Object slackSend;
-  // we need to store the reference to the method here in order to be able to call it when not using vars directory.
-  // see: https://stackoverflow.com/a/44958939/6360083
-  SlackNotification(jenkins) {
-    this.slackSend = slackSend;
-  }
-
   /**
    * Build a slack notification based on parameters
    */
@@ -42,13 +35,5 @@ class SlackNotification {
       msg += '\n' + log
     }
     return msg
-  }
-
-  /**
-   * Send a message to slack
-   */
-  public void send(String color, String action, String appName, String targetEnv = '', String build = '', String log = '', String recentStage = '') {
-    final message = buildMessage(action, appName, targetEnv, build, log, recentStage);
-    this.jenkins.slackSend(color: color, message: message);
   }
 }
