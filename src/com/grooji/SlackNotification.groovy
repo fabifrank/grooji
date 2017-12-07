@@ -1,5 +1,8 @@
 package com.grooji;
 
+/**
+ * We use a class in this script to define constants.
+ */
 class SlackNotification {
   public static final String BUILD_START = 'Build Start';
   public static final String BUILD_SUCCESS = 'Build SUCCESS';
