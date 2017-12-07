@@ -1,5 +1,6 @@
 package com.grooji;
 
+@NoCPS
 class SlackNotification {
   public static final String BUILD_START = 'Build Start';
   public static final String BUILD_SUCCESS = 'Build SUCCESS';
