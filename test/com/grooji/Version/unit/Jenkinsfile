@@ -1,0 +1,12 @@
+@Library('grooji')
+import com.grooji.*;
+
+def execute() {
+  node() {
+
+    stage("Send some slack messages") {
+      def fullVersion = getFullVersion();
+      assertVariable(fullVersion);
+    }
+  }
+}
