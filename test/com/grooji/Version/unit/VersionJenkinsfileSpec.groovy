@@ -37,13 +37,20 @@ class VersionJenkinsfileSpec extends BasePipelineTest {
 	def script = loadScript('test/com/grooji/Version/unit/Jenkinsfile')
 	script.execute()
 
+        def fnNames = ["assertVariable", "sh"];
+
 	def fnCalls = [];
 	helper.callStack.findAll{ call ->
-	    call.methodName == "assertVariable"
-	}.every{ call ->
-	    fnCalls.push(call.toString());
+  	    fnNames.any{
+              call.methodName.trim() == it
+            }
+        }.every{ call ->
+	    fnCalls.push(call.toString().trim());
 	}
-	org.junit.Assert.assertEquals('Jenkinsfile.assertVariable(51/COMMITHASH1234/test_branch)', fnCalls[0].trim());
+        org.junit.Assert.assertEquals('getShortCommitHash.sh({returnStdout=true, script=git rev-parse --short HEAD})', fnCalls[0]);
+	org.junit.Assert.assertEquals('Jenkinsfile.assertVariable(51/COMMITHASH1234/test_branch)', fnCalls[1]);
+        org.junit.Assert.assertEquals('getCommitHash.sh({returnStdout=true, script=git rev-parse HEAD})', fnCalls[2]);
+	org.junit.Assert.assertEquals('Jenkinsfile.assertVariable(COMMITHASH1234)', fnCalls[3]);
 
 	assertJobStatusSuccess();
     }

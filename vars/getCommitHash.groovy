@@ -3,5 +3,5 @@
  */
 def call() {
   def commit = sh(returnStdout: true, script: 'git rev-parse HEAD');
-  return commit.get(0);
+  return commit;
 }

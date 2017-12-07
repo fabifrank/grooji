@@ -5,8 +5,13 @@ def execute() {
   node() {
 
     stage("Send some slack messages") {
+      // test vars/getFullVersion.groovy & vars/getShortCommitHash.groovy
       def fullVersion = getFullVersion();
       assertVariable(fullVersion);
+
+      // test vars/getCommitHash.groovy
+      def hash = getCommitHash();
+      assertVariable(hash);
     }
   }
 }
