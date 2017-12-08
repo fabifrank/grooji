@@ -1,0 +1,12 @@
+@Library('grooji')
+import com.grooji.*;
+
+def execute() {
+  node() {
+
+    stage("Add git tag and push them to server") {
+      setGitUser('test_user', 'test@mail');
+      addGitTag('1.0.0', 'dev', 'credentialsId');
+    }
+  }
+}
