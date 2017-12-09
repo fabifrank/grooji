@@ -14,8 +14,9 @@ class VersionJenkinsfileSpec extends BasePipelineTest {
     @Before
     public void setUp() throws Exception {
 	super.setUp();
-        // the sh method is only called to return the commit hush so we stub it here
-	helper.registerAllowedMethod("sh", [Map.class], { "COMMITHASH1234" });
+        // the sh method is only called to return the commit hash so we stub it here
+        // we added some line breaks to check if they will be removed
+	helper.registerAllowedMethod("sh", [Map.class], { "\nCOMMIT\nHASH1234\n" });
         helper.registerAllowedMethod("assertVariable", [Object], { "ok" });
         binding.setVariable('env', [
           BUILD_NUMBER: 51,
