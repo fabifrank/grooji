@@ -5,9 +5,9 @@ def execute() {
   node() {
 
     stage("Add git tag and push them to server") {
-      def pod = getPodsByNamespace();
-      def recent = getRecentPodStatus();
-      def running = getRunningPodStatus();
+      def pod = getPodsByNamespace('dev');
+      def recent = getRecentPodStatus('pod-begins-with...', 'dev');
+      def running = getRunningPodStatus('pod-begins-with...', 'dev');
     }
   }
 }

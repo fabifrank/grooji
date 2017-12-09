@@ -14,7 +14,8 @@ class KubernetesJenkinsfileSpec extends BasePipelineTest {
     @Before
     public void setUp() throws Exception {
 	super.setUp();
-	helper.registerAllowedMethod("sshagent", [Map.class, Closure], { "ok" });
+	helper.registerAllowedMethod('sshagent', [Map.class, Closure], { 'ok' });
+        helper.registerAllowedMethod('sh', [Map.class], { ' return with whitespace ' });
 
         def library = library().name('grooji')
         .defaultVersion("master")
@@ -29,7 +30,7 @@ class KubernetesJenkinsfileSpec extends BasePipelineTest {
 
     @Test
     public void should_execute_without_errors() throws Exception {
-	def script = loadScript('test/com/grooji/Git/unit/Jenkinsfile')
+	def script = loadScript('test/com/grooji/Kubernetes/unit/Jenkinsfile')
 	script.execute()
 
         def fnNames = ['getRunningPodStatus', 'getRecentPodStatus', 'getPodsByNamespace', 'sh'];
@@ -40,13 +41,13 @@ class KubernetesJenkinsfileSpec extends BasePipelineTest {
 	}.every{ call ->
 	    fnCalls.push(call.toString().trim());
 	}
-        org.junit.Assert.assertEquals('Jenkinsfile.setGitUser(test_user, test@mail)', fnCalls[0]);
-        org.junit.Assert.assertEquals('setGitUser.sh(git config --global user.email "test@mail")', fnCalls[1]);
-        org.junit.Assert.assertEquals('setGitUser.sh(git config --global user.name "test_user")', fnCalls[2]);
-	org.junit.Assert.assertEquals('Jenkinsfile.addGitTag(1.0.0, dev, credentialsId)', fnCalls[3]);
-        org.junit.Assert.assertEquals('addGitTag.sh(git tag -a 1.0.0 -m "Jenkins Release to dev")', fnCalls[4]);
-	org.junit.Assert.assertEquals('addGitTag.pushGitTags(credentialsId)', fnCalls[5]);
-	org.junit.Assert.assertEquals('pushGitTags.sshagent({credentials=[credentialsId]}, groovy.lang.Closure)', fnCalls[6]);
+        org.junit.Assert.assertEquals('Jenkinsfile.getPodsByNamespace(dev)', fnCalls[0]);
+        org.junit.Assert.assertEquals('getPodsByNamespace.sh({returnStdout=true, script=kubectl get pods -n dev})', fnCalls[1]);
+        org.junit.Assert.assertEquals('Jenkinsfile.getRecentPodStatus(pod-begins-with..., dev)', fnCalls[2]);
+        org.junit.Assert.assertEquals('getRecentPodStatus.sh({returnStdout=true, script=kubectl describe po pod-begins-with... -n dev | grep -Eo \'Status\' | cut -d: -f2 | tr -d \'[:space:]\'})', fnCalls[3]);
+        org.junit.Assert.assertEquals('Jenkinsfile.getRunningPodStatus(pod-begins-with..., dev)', fnCalls[4]);
+        org.junit.Assert.assertEquals('getRunningPodStatus.getPodsByNamespace(dev)', fnCalls[5]);
+        org.junit.Assert.assertEquals('getPodsByNamespace.sh({returnStdout=true, script=kubectl get pods -n dev})', fnCalls[6]);
 
 	assertJobStatusSuccess();
     }

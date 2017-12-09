@@ -1,5 +1,9 @@
 package com.grooji;
 
-public class Kubernetes {
-  public static final STATUS_SUCCEEDED = "Succeeded";
+class Kubernetes {
+  public static final STATUS_PENDING = 'Pending';
+  public static final STATUS_RUNNING = 'Running';
+  public static final STATUS_SUCCEEDED = 'Succeeded';
+  public static final STATUS_FAILED = 'Failed';
+  public static final STATUS_UNKNOWN = 'Unknown';
 }
