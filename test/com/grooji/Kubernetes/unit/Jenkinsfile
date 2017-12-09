@@ -1,0 +1,13 @@
+@Library('grooji')
+import com.grooji.*;
+
+def execute() {
+  node() {
+
+    stage("Add git tag and push them to server") {
+      def pod = getPodsByNamespace();
+      def recent = getRecentPodStatus();
+      def running = getRunningPodStatus();
+    }
+  }
+}
