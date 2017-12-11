@@ -44,7 +44,7 @@ class KubernetesJenkinsfileSpec extends BasePipelineTest {
         org.junit.Assert.assertEquals('Jenkinsfile.getPodsByNamespace(dev)', fnCalls[0]);
         org.junit.Assert.assertEquals('getPodsByNamespace.sh({returnStdout=true, script=kubectl get pods -n dev})', fnCalls[1]);
         org.junit.Assert.assertEquals('Jenkinsfile.getRecentPodStatus(pod-begins-with..., dev)', fnCalls[2]);
-        org.junit.Assert.assertEquals('getRecentPodStatus.sh({returnStdout=true, script=kubectl describe po pod-begins-with... -n dev | grep -Eo \'Status\' | cut -d: -f2 | tr -d \'[:space:]\'})', fnCalls[3]);
+        org.junit.Assert.assertEquals('getRecentPodStatus.sh({returnStdout=true, script=kubectl describe po pod-begins-with... -n dev | grep -Eo \'Status:.*\' | cut -d: -f2 | tr -d \'[:space:]\'})', fnCalls[3]);
         org.junit.Assert.assertEquals('Jenkinsfile.getRunningPodStatus(pod-begins-with..., dev)', fnCalls[4]);
         org.junit.Assert.assertEquals('getRunningPodStatus.getPodsByNamespace(dev)', fnCalls[5]);
         org.junit.Assert.assertEquals('getPodsByNamespace.sh({returnStdout=true, script=kubectl get pods -n dev})', fnCalls[6]);
