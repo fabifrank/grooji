@@ -1,0 +1,11 @@
+@Library('grooji')
+import com.grooji.*;
+
+def execute() {
+  node() {
+
+    stage("Send some slack messages") {
+      def step = setRecentStep('currently doing this');
+    }
+  }
+}
