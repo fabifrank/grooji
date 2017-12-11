@@ -5,7 +5,11 @@ def execute() {
   node() {
 
     stage("Send some slack messages") {
-      def step = setRecentStep('currently doing this');
+      def _step = 'currently doing this';
+      def stepReturn = setRecentStep(_step);
+
+      assertEquals(stepReturn, 'currently doing this');
+      assertEquals(recentStep, stepReturn);
     }
   }
 }

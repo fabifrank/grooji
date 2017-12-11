@@ -14,7 +14,9 @@ class PipelineJenkinsSpec extends BasePipelineTest {
     @Before
     public void setUp() throws Exception {
 	super.setUp();
-	helper.registerAllowedMethod("setRecentStep", [Map.class], { "ok" });
+
+        helper.registerAllowedMethod('assertEquals', [Map.class], { 'ok' });
+        helper.registerAllowedMethod('assertEquals', [String, String], { "ok" });
 
         def library = library().name('grooji')
         .defaultVersion("master")
@@ -32,13 +34,17 @@ class PipelineJenkinsSpec extends BasePipelineTest {
 	def script = loadScript('test/com/grooji/Pipeline/unit/Jenkinsfile')
 	script.execute()
 
+        def fnNames = ['setRecentStep', 'assertEquals'];
 	def fnCalls = [];
 	helper.callStack.findAll{ call ->
-	    call.methodName == "setRecentStep"
+          fnNames.any{ call.methodName.contains(it) }
 	}.every{ call ->
 	    fnCalls.push(call.toString().trim());
 	}
+
 	org.junit.Assert.assertEquals('Jenkinsfile.setRecentStep(currently doing this)', fnCalls[0]);
+	org.junit.Assert.assertEquals('Jenkinsfile.assertEquals(currently doing this, currently doing this)', fnCalls[1]);
+	org.junit.Assert.assertEquals('Jenkinsfile.assertEquals(currently doing this, currently doing this)', fnCalls[2]);
 
 	assertJobStatusSuccess();
     }
