@@ -50,7 +50,7 @@ class KubernetesJenkinsfileSpec extends BasePipelineTest {
         org.junit.Assert.assertEquals('getPodsByNamespace.sh({returnStdout=true, script=kubectl get pods -n dev})', fnCalls[6]);
         org.junit.Assert.assertEquals('getRunningPodStatus.sh({returnStdout=true, script=echo "${pods}"  | grep ${podPrefix} | awk \'{ print ${3} }\'})', fnCalls[7]);
         org.junit.Assert.assertEquals('Jenkinsfile.getPodNameByRegex(pod-begins-with..., dev)', fnCalls[8]);
-        org.junit.Assert.assertEquals('getPodNameByRegex.sh({returnStdout=true, script=kubectl get pods -n dev | awk \'/pod-begins-with.../ {print 1; exit}\'})', fnCalls[9]);
+        org.junit.Assert.assertEquals('getPodNameByRegex.sh({returnStdout=true, script=kubectl get pods -n dev | awk \'/pod-begins-with.../ {print $1; exit}\'})', fnCalls[9]);
 
 	assertJobStatusSuccess();
     }
