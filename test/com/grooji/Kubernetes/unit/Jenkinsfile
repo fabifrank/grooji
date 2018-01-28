@@ -8,6 +8,7 @@ def execute() {
       def pod = getPodsByNamespace('dev');
       def recent = getRecentPodStatus('pod-begins-with...', 'dev');
       def running = getRunningPodStatus('pod-begins-with...', 'dev');
+	  def podNameByRegex = getPodNameByRegex('pod-begins-with...', 'dev');
     }
   }
 }

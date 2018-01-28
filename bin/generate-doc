@@ -1,0 +1,10 @@
+#!/bin/sh
+
+for file in vars/*.groovy; do
+  printf "\n"
+  filename=$(basename $file | cut -f 1 -d '.');
+  #echo $file;
+  content=$(cat $file);
+  #echo $filename
+  echo "$content" | grep 'def call' | sed -e 's/
+done

@@ -4,7 +4,7 @@ import com.grooji.*;
 def execute() {
   node() {
 
-    stage("Send some slack messages") {
+    stage("Do something...") {
       def _step = 'currently doing this';
       def stepReturn = setRecentStep(_step);
 

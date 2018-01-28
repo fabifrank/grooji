@@ -33,7 +33,7 @@ class KubernetesJenkinsfileSpec extends BasePipelineTest {
 	def script = loadScript('test/com/grooji/Kubernetes/unit/Jenkinsfile')
 	script.execute()
 
-        def fnNames = ['getRunningPodStatus', 'getRecentPodStatus', 'getPodsByNamespace', 'sh'];
+        def fnNames = ['getRunningPodStatus', 'getRecentPodStatus', 'getPodsByNamespace', 'sh', 'getPodNameByRegex'];
 
 	def fnCalls = [];
 	helper.callStack.findAll{ call ->
@@ -48,6 +48,9 @@ class KubernetesJenkinsfileSpec extends BasePipelineTest {
         org.junit.Assert.assertEquals('Jenkinsfile.getRunningPodStatus(pod-begins-with..., dev)', fnCalls[4]);
         org.junit.Assert.assertEquals('getRunningPodStatus.getPodsByNamespace(dev)', fnCalls[5]);
         org.junit.Assert.assertEquals('getPodsByNamespace.sh({returnStdout=true, script=kubectl get pods -n dev})', fnCalls[6]);
+        org.junit.Assert.assertEquals('getRunningPodStatus.sh({returnStdout=true, script=echo "${pods}"  | grep ${podPrefix} | awk \'{ print ${3} }\'})', fnCalls[7]);
+        org.junit.Assert.assertEquals('Jenkinsfile.getPodNameByRegex(pod-begins-with..., dev)', fnCalls[8]);
+        org.junit.Assert.assertEquals('getPodNameByRegex.sh({returnStdout=true, script=kubectl get pods -n dev | awk \'/pod-begins-with.../ {print 1; exit}\'})', fnCalls[9]);
 
 	assertJobStatusSuccess();
     }
